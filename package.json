@@ -1,0 +1,32 @@
+{
+  "name": "prendiendo_node",
+  "version": "1.0.0",
+  "description": "ahi la llevamos, animos",
+  "keywords": [
+    "curso",
+    "aprendiendo",
+    "node",
+    "salomelanderos"
+  ],
+  "homepage": "https://github.com/Salomelanderos11/node-midu#readme",
+  "bugs": {
+    "url": "https://github.com/Salomelanderos11/node-midu/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Salomelanderos11/node-midu.git"
+  },
+  "license": "ISC",
+  "author": "Salome landeros salazar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "picocolors": "1.1.1"
+  },
+  "devDependencies": {
+    "standard": "^17.1.2"
+  }
+}
