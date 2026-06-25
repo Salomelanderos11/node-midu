@@ -21,12 +21,14 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "dev":"nodemon clase_2/2_routing.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "picocolors": "1.1.1"
   },
   "devDependencies": {
+    "nodemon": "^3.1.14",
     "standard": "^17.1.2"
   }
 }
