@@ -21,14 +21,16 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "dev":"nodemon clase_2/2_routing.js",
+    "dev": "nodemon clase_2/3_express.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "cors": "2.8.6",
+    "express": "5.2.1",
     "picocolors": "1.1.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14",
-    "standard": "^17.1.2"
+    "nodemon": "3.1.14",
+    "standard": "17.1.2"
   }
 }

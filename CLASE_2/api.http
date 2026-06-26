@@ -1,0 +1,9 @@
+GET http://localhost:1234/nort/categorias
+
+###
+
+POST http://localhost:1234/nort/categorias
+Content-Type:  application/json
+
+{"asd":
+    {"category_id":10,"category_name":"tienda","description":"lo que caiga","picture":{"type":"Buffer","data":[]}}}

@@ -1,10 +1,9 @@
 const http = require('node:http')
 const categories = require('./categorias')
-console.log(categories)
 const procesar_request = (req, res)=>{
 
     const {method,url } = req
-    console.log(method,url)
+    
     switch (method) {
         
         case 'GET':
@@ -14,7 +13,6 @@ const procesar_request = (req, res)=>{
                     
                     res.statusCode=200
                     res.setHeader('Content-Type','application/json; charset=utf-8')
-                    
                     res.end(JSON.stringify(categories))
                     break;
                 case '/nort/about':
@@ -32,11 +30,12 @@ const procesar_request = (req, res)=>{
                     res.end("pagina no encontrada")
                     break;
             }
+            break;
         case 'POST':
            
             switch (url) {
                 case '/nort/categorias':
-                    
+                    const data = req.body
                     res.statusCode=200
                     res.setHeader('Content-Type','application/json; charset=utf-8')
                     
@@ -67,5 +66,5 @@ const procesar_request = (req, res)=>{
 const server = http.createServer(procesar_request)
 
 server.listen(1234,() =>{
-    console.log('escuchndo en el puerto http://localhost:,1234')    
+    console.log('escuchndo en el puerto http://localhost:1234')    
 })
