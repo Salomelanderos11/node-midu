@@ -9,3 +9,29 @@ GET http://localhost:1234/peliculas/1
 ###por genero
 GET http://localhost:1234/peliculas/?genero=action
 
+
+
+### post
+POST http://localhost:1234/peliculas
+Content-Type:  application/json
+
+{
+    
+    "title": "Goodfeee",
+    "year": 1990,
+    "director": "Martin monror",
+    "duration": 144,
+    "poster": "https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjNS00YzM4LTkyMGYtOWM4MjQyODczMjkyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
+    "genre": ["Terror", "Crime", "Drama"]
+    
+  }
+
+
+###ACTUALIZAR UNAPELICUAL PARCIALMENTE
+PATCH http://localhost:1234/peliculas/1
+Content-Type: application/json
+
+{
+    "year" : 1973,
+    "duration" : 122
+}

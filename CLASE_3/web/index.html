@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test api </title>
+    <script type="module">
+        fetch('http://localhost:1234/peliculas')
+        .then(res => res.json())
+        .then(peliculas =>{
+            const ht = peliculas.map(peli =>{
+                return `<h2> ${peli.title} </h2>`
+            }).join(',')
+            //console.log( ht)
+            document.querySelector('main').innerHTML =ht
+        })
+
+
+    </script>
+</head>
+<body>
+<main></main>
+    
+</body>
+</html>
