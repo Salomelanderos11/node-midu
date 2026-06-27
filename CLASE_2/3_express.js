@@ -13,6 +13,7 @@ app.use((req,res,next)=>{
     next()
 })
 
+
 app.get('/nort/categorias',(req,res)=>{
     res.status(200).send("habia una vez")
 })

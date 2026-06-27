@@ -1,0 +1,11 @@
+### Obtener todas las peliculas
+GET http://localhost:1234/peliculas
+
+####una pelicula 
+
+GET http://localhost:1234/peliculas/1
+
+
+###por genero
+GET http://localhost:1234/peliculas/?genero=action
+
