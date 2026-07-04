@@ -1,43 +1,20 @@
-const express = require('express')
-const crypto = require('crypto')
-const cors = require('cors')
-const { validar_peli, valid_parcial }= require('./schemas/movies') 
-const app = express()
+import { Router } from "express";
+import { randomUUID } from 'crypto';
+import { required_fun } from "../utils/require_fun.js";
+import { validar_peli, valid_parcial } from '../schemas/movies.js' 
+import { MovieModel } from "../controlador/movie.js";
+export const Rmovies = Router()
+const require = required_fun
+const lista_peliculas = require('../movies.json')
 
-const lista_peliculas = require('./movies.json');
-app.disable('x-powered-by')
-const port = process.env.PORT ?? 1234
-
-
-app.use(express.json())
-app.use(cors({
-    origin : (origin,callback) =>{
-        const ORIGENES_ACEPTADOS = ['http://localhost:1234','http://localhost:8080','http://localhost:5500']
-        if(ORIGENES_ACEPTADOS.includes(origin) || !origin){
-            return callback(null,true)
-        }
-        
-        return callback(new Error("NO PERMITIDO POR CORS"))
-
-    }
-}))
-
-app.get('/',(req,res)=>{
-    res.json({mensaje: "holamundo"})
-})
- 
-app.get('/peliculas',(req,res)=>{
+Rmovies.get('/',(req,res)=>{
     const origin  = req.header('origin')
     
     try {
         const {genero} = req.query
-        if(genero && genero != null){
-            let peliculas = lista_peliculas.filter(mov => mov.genre.some(g=> g.toLowerCase()== genero.toLowerCase()))
-            return res.status(200).json({movies: peliculas})
-        }
-        else{
-            res.status(200).json(lista_peliculas)
-        }
+        const movies = MovieModel.getAll({genero})
+        res.status(200).json(movies)
+        
     } catch (error) {
         res.status(500).json({err:error})
         
@@ -45,7 +22,7 @@ app.get('/peliculas',(req,res)=>{
     
 })
 
-app.get('/peliculas/:id',(req,res)=>{
+Rmovies.get('/:id',(req,res)=>{
     const id_pel = req.params.id
     const pelicula = lista_peliculas.find(mov => mov.id == id_pel )
     if(pelicula) return res.status(200).json({movies : pelicula})
@@ -54,7 +31,7 @@ app.get('/peliculas/:id',(req,res)=>{
 
 })
 
-app.post('/peliculas',(req, res)=>{
+Rmovies.post('/',(req, res)=>{
     
     const {title,year,director,duration,poster,genre,rate} = req.body
     const resultado = validar_peli(req.body)
@@ -63,7 +40,7 @@ app.post('/peliculas',(req, res)=>{
     }
 
     const pelicula = {
-        id: crypto.randomUUID(),
+        id: randomUUID(),
         ...resultado.data    
     }
 
@@ -72,7 +49,7 @@ app.post('/peliculas',(req, res)=>{
     res.status(400).json(pelicula)
 })
 
-app.delete('/peliculas/:id',(req, res)=>{
+Rmovies.delete('/:id',(req, res)=>{
     const id = req.params.id
     const index = lista_peliculas.find(pel => pel.id == id)
     if(index == -1){
@@ -83,7 +60,7 @@ app.delete('/peliculas/:id',(req, res)=>{
     res.status(204).json({message : "pelicula eliminada"})
 })
 
-app.patch('/peliculas/:id',(req,res)=>{
+Rmovies.patch('/:id',(req,res)=>{
 
     const id = req.params.id
     const result =  valid_parcial(req.body) 
@@ -104,11 +81,3 @@ app.patch('/peliculas/:id',(req,res)=>{
     return res.status(203).json(updatepeli)
 })
 
-app.use((req, res)=>{
-    res.status(404).send("<h1> 404 PAGINA NO ENCONTRADA</h1>")
-
-})
-
-app.listen(port,()=>{
-    console.log(`app escuchando desde localhost:${port}`)
-})
