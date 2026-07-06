@@ -6,6 +6,7 @@ const app = express()
 app.disable('x-powered-by')
 const port = process.env.PORT ?? 1234
 app.use(corsmiddleware())
+app.use(express.json())
 
 
 

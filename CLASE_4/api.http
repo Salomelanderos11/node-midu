@@ -1,18 +1,17 @@
 ### Obtener todas las peliculas
-GET http://localhost:1234/peliculas
+GET http://localhost:1234/movies
 
 ####una pelicula 
 
-GET http://localhost:1234/peliculas/1
-
+GET http://localhost:1234/movies/1
 
 ###por genero
-GET http://localhost:1234/peliculas/?genero=action
+GET http://localhost:1234/movies?genero=action
 
 
 
 ### post
-POST http://localhost:1234/peliculas
+POST http://localhost:1234/movies
 Content-Type:  application/json
 
 {
@@ -24,14 +23,17 @@ Content-Type:  application/json
     "poster": "https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjNS00YzM4LTkyMGYtOWM4MjQyODczMjkyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
     "genre": ["Terror", "Crime", "Drama"]
     
-  }
+}
 
+####as d asd
+DELETE http://localhost:1234/movies/4a7ee523-163e-451a-995d-6edb59bade3e
 
 ###ACTUALIZAR UNAPELICUAL PARCIALMENTE
-PATCH http://localhost:1234/peliculas/1
+PATCH http://localhost:1234/movies/5f3834c3-415f-4cc6-a9f8-0d32ea0b4c5d
 Content-Type: application/json
 
 {
     "year" : 1973,
     "duration" : 122
 }
+
