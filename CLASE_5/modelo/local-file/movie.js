@@ -1,4 +1,4 @@
-import { required_fun } from "../utils/require_fun.js";
+import { required_fun } from "../../utils/require_fun.js";
 import { randomUUID } from "node:crypto";
 const movies = required_fun('../movies.json')
 

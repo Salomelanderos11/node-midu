@@ -1,6 +1,6 @@
-import { required_fun } from "../utils/require_fun.js";
+import { required_fun } from "../../utils/require_fun.js";
 import { randomUUID } from "node:crypto";
-import {pool} from '../../conexion/db.js'
+import {pool} from './conexion_db.js'
 const db = pool;
 //const movies = required_fun('../movies.json')
 
@@ -9,7 +9,7 @@ export class MovieModel {
         
         if(genero && genero != null){
             const sql = 'select * from peliculas where genero = $1'
-            let peliculas = db.query(sql,{genero}) 
+            let peliculas = db.query(sql,[genero]) 
             return peliculas
         }
 
@@ -21,8 +21,9 @@ export class MovieModel {
 
 
     static async getId  ({id})  {
-        const pelicula = movies.find(mov => mov.id == id)
-        console.log(id)
+        const sql= 'select * from movies where id = $1'
+        const pelicula = pool.query(sql,[id])
+
         if (pelicula == -1){
             return false
         }
@@ -31,14 +32,27 @@ export class MovieModel {
 
     static async create ({input}){
         try {
-
-        const new_pelicula = {
+            
+        const new_pelicula =input 
+        /*{
             id: randomUUID(),
             ...input  
-        }
+        }*/
 
-        movies.push(new_pelicula)
-        return new_pelicula   
+        const colums = Object.keys(new_pelicula)
+        const valores = Object.values(new_pelicula)
+        const generos = valores[6]
+        valores = valores.splice(6) 
+        
+        console.log(generos)
+        const sql ="insert into movies (title,year,director,duration, poster,rate) values ($1,$2,$3,$4,$5,$6,$7)"
+        /*const res= await pool.query(sql,valores)
+        
+        
+        if (res.rowCount >0){
+                return res.rows 
+            }*/    
+        return "ocurrio un error al insertar pelicula"   
         } catch (error) {
             return error.message
         }

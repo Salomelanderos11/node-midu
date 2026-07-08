@@ -14,16 +14,208 @@ GET http://localhost:1234/movies?genero=action
 POST http://localhost:1234/movies
 Content-Type:  application/json
 
-{
-    
-    "title": "Goodfeee",
+[
+  {
+    "id": 1,
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "director": "Frank Darabont",
+    "duration": 142,
+    "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
+    "genre": ["Drama"],
+    "rate": 9.3
+  },
+  {
+    "id": 2,
+    "title": "The Godfather",
+    "year": 1972,
+    "director": "Francis Ford Coppola",
+    "duration": 175,
+    "poster": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+    "genre": ["Crime", "Drama"],
+    "rate": 9.2
+  },
+  {
+    "id": 3,
+    "title": "The Dark Knight",
+    "year": 2008,
+    "director": "Christopher Nolan",
+    "duration": 152,
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg",
+    "genre": ["Action", "Crime", "Drama"],
+    "rate": 9.0
+  },
+  {
+    "id": 4,
+    "title": "The Godfather Part II",
+    "year": 1974,
+    "director": "Francis Ford Coppola",
+    "duration": 202,
+    "poster": "https://m.media-amazon.com/images/M/MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDUtZTUyNTA0NDg3ODc2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+    "genre": ["Crime", "Drama"],
+    "rate": 9.0
+  },
+  {
+    "id": 5,
+    "title": "12 Angry Men",
+    "year": 1957,
+    "director": "Sidney Lumet",
+    "duration": 96,
+    "poster": "https://m.media-amazon.com/images/M/MV5BMWU4N2FjNzYtNTVkNC00NzI0LTg1NjAtYTBiYzBkMzMwNWRiXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+    "genre": ["Crime", "Drama"],
+    "rate": 9.0
+  },
+  {
+    "id": 6,
+    "title": "Schindler's List",
+    "year": 1993,
+    "director": "Steven Spielberg",
+    "duration": 195,
+    "poster": "https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNWY0YS00NzA3LTg3N2ItODMwNWZiMzM4MDc0XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
+    "genre": ["Biography", "Drama", "History"],
+    "rate": 8.9
+  },
+  {
+    "id": 7,
+    "title": "The Lord of the Rings: The Return of the King",
+    "year": 2003,
+    "director": "Peter Jackson",
+    "duration": 201,
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTZkMjBjNWMtMWQwMi00NDY4LWI0YjMtYjU0YWY0NWIxMWVlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
+    "genre": ["Action", "Adventure", "Drama"],
+    "rate": 8.9
+  },
+  {
+    "id": 8,
+    "title": "Pulp Fiction",
+    "year": 1994,
+    "director": "Quentin Tarantino",
+    "duration": 154,
+    "poster": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlYi00MTRkLWI5ODgtMWFlNjY2N2FmZTYzXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+    "genre": ["Crime", "Drama"],
+    "rate": 8.9
+  },
+  {
+    "id": 9,
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "year": 2001,
+    "director": "Peter Jackson",
+    "duration": 178,
+    "poster": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg",
+    "genre": ["Action", "Adventure", "Drama"],
+    "rate": 8.8
+  },
+  {
+    "id": 10,
+    "title": "Forrest Gump",
+    "year": 1994,
+    "director": "Robert Zemeckis",
+    "duration": 142,
+    "poster": "https://m.media-amazon.com/images/M/MV5BNWIwODRlYTUtY2U3My00Yzg1LWJhNzYtMmZiYTYwMWFiMGEwXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
+    "genre": ["Drama", "Romance"],
+    "rate": 8.8
+  },
+  {
+    "id": 11,
+    "title": "Fight Club",
+    "year": 1999,
+    "director": "David Fincher",
+    "duration": 139,
+    "poster": "https://m.media-amazon.com/images/M/MV5BODQ0MkJjMzUtYjlkYi00Njk4LWIwODQtYTRhMzBmMWU2NjMwXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
+    "genre": ["Drama"],
+    "rate": 8.8
+  },
+  {
+    "id": 12,
+    "title": "Inception",
+    "year": 2010,
+    "director": "Christopher Nolan",
+    "duration": 148,
+    "poster": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
+    "genre": ["Action", "Adventure", "Sci-Fi"],
+    "rate": 8.8
+  },
+  {
+    "id": 13,
+    "title": "The Lord of the Rings: The Two Towers",
+    "year": 2002,
+    "director": "Peter Jackson",
+    "duration": 179,
+    "poster": "https://m.media-amazon.com/images/M/MV5BZGMxZTdjZmYtMmE2Ni00NzI5LWI1ODAtN2YzNjRjNDE4MzA2XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
+    "genre": ["Action", "Adventure", "Drama"],
+    "rate": 8.7
+  },
+  {
+    "id": 14,
+    "title": "The Matrix",
+    "year": 1999,
+    "director": "Lana Wachowski, Lilly Wachowski",
+    "duration": 136,
+    "poster": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
+    "genre": ["Action", "Sci-Fi"],
+    "rate": 8.7
+  },
+  {
+    "id": 15,
+    "title": "Goodfellas",
     "year": 1990,
-    "director": "Martin monror",
-    "duration": 144,
+    "director": "Martin Scorsese",
+    "duration": 145,
     "poster": "https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjNS00YzM4LTkyMGYtOWM4MjQyODczMjkyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
-    "genre": ["Terror", "Crime", "Drama"]
-    
-}
+    "genre": ["Biography", "Crime", "Drama"],
+    "rate": 8.7
+  },
+  {
+    "id": 16,
+    "title": "One Flew Over the Cuckoo's Nest",
+    "year": 1975,
+    "director": "Milos Forman",
+    "duration": 133,
+    "poster": "https://m.media-amazon.com/images/M/MV5BZjA0OWVhOTAtYWQxNi00YzcyLWIyYTAtYTWkZTEwY2JiNDVjXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+    "genre": ["Drama"],
+    "rate": 8.7
+  },
+  {
+    "id": 17,
+    "title": "Seven Samurai",
+    "year": 1954,
+    "director": "Akira Kurosawa",
+    "duration": 207,
+    "poster": "https://m.media-amazon.com/images/M/MV5BNDQwYjcyNDMtNzkyY000MzU4LWI4YTAtYzYwNzZkM2I3MzI3XkEyXkFqcGdeQXVyMTA0MTM5NjI0._V1_.jpg",
+    "genre": ["Action", "Drama"],
+    "rate": 8.6
+  },
+  {
+    "id": 18,
+    "title": "Se7en",
+    "year": 1995,
+    "director": "David Fincher",
+    "duration": 127,
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTcwNTU2NTY3Ng@@._V1_.jpg",
+    "genre": ["Crime", "Drama", "Mystery"],
+    "rate": 8.6
+  },
+  {
+    "id": 19,
+    "title": "The Silence of the Lambs",
+    "year": 1991,
+    "director": "Jonathan Demme",
+    "duration": 118,
+    "poster": "https://m.media-amazon.com/images/M/MV5BNjNhZTk0ZmEtNjJhMi00YzFlLWE1YmMtYzM3YzQyYTg0YjBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
+    "genre": ["Crime", "Drama", "Thriller"],
+    "rate": 8.6
+  },
+  {
+    "id": 20,
+    "title": "Interstellar",
+    "year": 2014,
+    "director": "Christopher Nolan",
+    "duration": 169,
+    "poster": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGI1LWE3NTUtYDU0MzVkM2M4N2I3XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+    "genre": ["Adventure", "Drama", "Sci-Fi"],
+    "rate": 8.6
+  }
+]
 
 ####as d asd
 DELETE http://localhost:1234/movies/4a7ee523-163e-451a-995d-6edb59bade3e

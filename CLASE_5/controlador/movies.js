@@ -1,5 +1,5 @@
 import { id } from "zod/v4/locales"
-import { MovieModel } from "../modelo/local-file/movie.js"
+import { MovieModel } from "../modelo/postgres/movie.js"
 import { valid_parcial, validar_peli } from "../schemas/movies.js"
 
 export class MovieController {
@@ -29,16 +29,25 @@ export class MovieController {
     
     static async create (req, res){
         try {
-        //const {title,year,director,duration,poster,genre,rate} = req.body
-            const resultado = validar_peli(req.body)
+            const pelis = req.body
+            //console.log(pelis)
+            for (const pel in pelis) {
+                
+                const resultado = validar_peli(pelis[pel])
             
-            if(resultado.error){
-                return res.status(400).json({error: JSON.parse(resultado.error.message),c:1})
-            }
+                if(resultado.error){
+                    return res.status(400).json({error: JSON.parse(resultado.error.message)})
+                }
 
-            const new_peli = await MovieModel.create({input : resultado.data})
+                const new_peli = await MovieModel.create({input : resultado.data})
+                
+                console.log(new_peli)
+            }
             
-            res.status(201).json(new_peli)
+        //const {title,year,director,duration,poster,genre,rate} = req.body
+            
+            
+            res.status(201).json({oks:'oks'})
             
         } 
         catch (error) {
