@@ -3,10 +3,10 @@ GET http://localhost:1234/movies
 
 ####una pelicula 
 
-GET http://localhost:1234/movies/1
+GET http://localhost:1234/movies/324c7304-f18b-48bd-9481-27efbb90e339
 
 ###por genero
-GET http://localhost:1234/movies?genero=action
+GET http://localhost:1234/movies?genero=Action
 
 
 

@@ -30,7 +30,7 @@ export class MovieController {
     static async create (req, res){
         try {
             const pelis = req.body
-            //console.log(pelis)
+            const peliculas=[]
             for (const pel in pelis) {
                 
                 const resultado = validar_peli(pelis[pel])
@@ -40,14 +40,14 @@ export class MovieController {
                 }
 
                 const new_peli = await MovieModel.create({input : resultado.data})
-                
-                console.log(new_peli)
+                //console.log(new_peli)
+                peliculas.push(new_peli)
             }
             
         //const {title,year,director,duration,poster,genre,rate} = req.body
             
             
-            res.status(201).json({oks:'oks'})
+            res.status(201).json({oks:peliculas})
             
         } 
         catch (error) {
