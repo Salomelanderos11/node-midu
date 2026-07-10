@@ -1,6 +1,7 @@
 import { id } from "zod/v4/locales"
 import { MovieModel } from "../modelo/postgres/movie.js"
 import { valid_parcial, validar_peli } from "../schemas/movies.js"
+import { parse } from "node:path"
 
 export class MovieController {
     static async getAll (req,res) {
@@ -57,7 +58,7 @@ export class MovieController {
 
     static async delete (req, res) {
         try {
-            const id = parseInt( req.params.id,10)
+            const id = req.params.id
             console.log(id,typeof(id))
             const result = await MovieModel.delete({id})
             if(result==false){
@@ -74,7 +75,7 @@ export class MovieController {
     static async update (req,res) {
         try {
             
-            const id = req.params.id
+            const id =  req.params.id
             const result =  valid_parcial(req.body) 
 
             if(result.error){
@@ -83,11 +84,11 @@ export class MovieController {
 
             const updatepeli = await MovieModel.update({id:id, input:result.data})
             if(updatepeli == false ){
-                res.status(404).json({message: "pelicula no encontrada"})
+                return res.status(404).json({message: "pelicula no encontrada"})
             }
-            return res.status(203).json(updatepeli)   
+            return res.status(203).json('Pelicula actualizada')   
         } catch (error) {
-            res.status(500).json({err:error})
+            res.status(500).json({err:error.message})
         }
     }
 }

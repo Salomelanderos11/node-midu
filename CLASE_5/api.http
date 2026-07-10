@@ -218,10 +218,10 @@ Content-Type:  application/json
 ]
 
 ####as d asd
-DELETE http://localhost:1234/movies/4a7ee523-163e-451a-995d-6edb59bade3e
+DELETE http://localhost:1234/movies/324c7304-f18b-48bd-9481-27efbb90e339
 
 ###ACTUALIZAR UNAPELICUAL PARCIALMENTE
-PATCH http://localhost:1234/movies/5f3834c3-415f-4cc6-a9f8-0d32ea0b4c5d
+PATCH http://localhost:1234/movies/324c7304-f18b-48bd-9481-27efbb90e339
 Content-Type: application/json
 
 {

@@ -1,6 +1,7 @@
 import { required_fun } from "../../utils/require_fun.js";
 import { randomUUID } from "node:crypto";
 import {pool} from './conexion_db.js'
+import { object } from "zod";
 const db = pool;
 //const movies = required_fun('../movies.json')
 
@@ -105,18 +106,27 @@ export class MovieModel {
         
     }
     static async update ({id,input}){
-        
-        
-    const ind = movies.findIndex( mov =>  mov.id == id)
+        try {
+            
+            const columns = Object.keys(input)
+            const valores = Object.values(input)
+            const updates = columns.map((key,ind) =>{
+                const query = `${key} = $${ind+1}`
+                return query
+                }).join(',')
+            
+            valores.push(id)
+            const sql = `update movies set ${updates} where id = $${valores.length}`
+            const res = await pool.query(sql,valores)
+            if(res.rowCount >0){
+                return true
+            }
 
-    if(ind == -1){
-        return false
-    }
-
-    movies[ind]= {
-        ...movies[ind],
-        ...input
-    }
-    return movies[ind]
+            return false
+        } catch (error) {
+            console.error('Ocurrio un eerror de ejecucion : ',error.message)
+            return error
+        }
+        
     }
 }

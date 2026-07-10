@@ -32,14 +32,17 @@ const movieschema = z.object(
                         "Thriller",
                         "Terror"
                         ])), 
-        rate : z.number().min(0).max(10).default(0)
+        rate : z.number().min(0).max(10).optional()
     }
 )
 
 
 
 export function validar_peli(object){
-    return movieschema.safeParse(object)
+    const createSchema = movieschema.extend({
+        rate: z.number().min(0).max(10).default(0) // 👈 El default solo aplica al crear
+    });
+    return createSchema.safeParse(input);
 }
 
 
