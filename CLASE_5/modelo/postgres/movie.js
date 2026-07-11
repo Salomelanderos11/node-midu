@@ -8,40 +8,47 @@ const db = pool;
 export class MovieModel {
     static async getAll  ({genero})  {
         try{
-        if(genero && genero != null){
-            const sql = `SELECT 
-                            m.id, m.title, m.year,jsonb_agg(g.name) AS genres, m.director, m.duration, m.poster, m.rate,
-                            
-                        FROM movies m
-                        INNER JOIN movie_genero mg ON mg.id_movie = m.id
-                        INNER JOIN generos g ON g.id = mg.genero_id
-                        GROUP BY m.id
-                        HAVING $1 = ANY(array_agg(g.name));`
-            const res= await db.query(sql,[genero]) 
-            return res.rows
-        }
+            if(genero && genero != null){
+                const ngenero = genero.toLowerCase()
 
-        const sql = `SELECT 
-                            m.id, 
-                            m.title, 
-                            m.year, 
-                            m.director
-                            ,
-                            -- Agrupa todos los nombres de los géneros en un array JSON nativo: ["Drama", "Action"]
-                            jsonb_agg(g.name) AS genres,  
-                            m.duration, 
-                            m.poster, 
-                            m.rate
-                        FROM movies m
-                        LEFT JOIN movie_genero mg ON mg.id_movie = m.id
-                        LEFT JOIN generos g ON g.id = mg.genero_id
-                        GROUP BY m.id;`
-        let res = await db.query(sql) 
-        
-        return res.rows
+                const gen =await  db.query(`select id from generos where name = $1`,[ngenero])
+                if(gen.rowCount == 0){
+                    return 'genero invalido'
+                } 
+                
+                const sql = `SELECT 
+                                m.id, m.title, m.year,jsonb_agg(g.name) AS genres, m.director, m.duration, m.poster, m.rate
+                                
+                            FROM movies m
+                            INNER JOIN movie_genero mg ON mg.id_movie = m.id
+                            INNER JOIN generos g ON g.id = mg.genero_id
+                            GROUP BY m.id
+                            HAVING $1 = ANY(array_agg(g.name));`
+                const res= await db.query(sql,[ngenero]) 
+                return res.rows
+            }
+
+            const sql = `SELECT 
+                                m.id, 
+                                m.title, 
+                                m.year, 
+                                m.director
+                                ,
+                                -- Agrupa todos los nombres de los géneros en un array JSON nativo: ["Drama", "Action"]
+                                jsonb_agg(g.name) AS genres,  
+                                m.duration, 
+                                m.poster, 
+                                m.rate
+                            FROM movies m
+                            LEFT JOIN movie_genero mg ON mg.id_movie = m.id
+                            LEFT JOIN generos g ON g.id = mg.genero_id
+                            GROUP BY m.id;`
+            let res = await db.query(sql) 
+            
+            return res.rows
     }catch (error) {
            console.error("❌ Error detectado en la ejecución del SP:", error.message);
-            throw new Error(`Error al insertar película: ${error.message}`);
+            throw new Error(`Error al obtener películas: ${error.message}`);
         }
     }
 
@@ -62,7 +69,7 @@ export class MovieModel {
                         LEFT JOIN generos g ON g.id = mg.genero_id
                         where m.id = $1
                         GROUP BY m.id;`
-        const res = await pool.query(sql,[id])
+        const res = await db.query(sql,[id])
 
         if (res.rowCount > 0){
             return res.rows
@@ -72,16 +79,17 @@ export class MovieModel {
 
     static async create ({input}){
         try {
-         
-        const sql ="call PROCESAR_PELI($1,$2)"
-        
-        const res= await pool.query(sql,[input,null])
-        const ID = res.rows[0]? res.rows[0].m_id : null;
-        
-        if (ID != null){
-                return ID
-            }
-        return "No se pudo obtenener el id de la pelicula"   
+            console.log(input)
+            const peli = input        
+            const sql ="call PROCESAR_PELI($1,$2)"
+            
+            const res= await db.query(sql,[peli,null])
+            const ID = res.rows[0]? res.rows[0].m_id : null;
+            
+            if (ID != null){
+                    return ID
+                }
+            return "No se pudo obtenener el id de la pelicula"   
         } catch (error) {
            console.error("❌ Error detectado en la ejecución del SP:", error.message);
             
@@ -97,7 +105,7 @@ export class MovieModel {
     static async delete ({id}){
 
         const sql = 'delete from movies where id = $1'
-        const res = await pool.query(sql,[id])
+        const res = await db.query(sql,[id])
         
         if(res.rowCount > 0){
             return true
@@ -117,9 +125,13 @@ export class MovieModel {
             
             valores.push(id)
             const sql = `update movies set ${updates} where id = $${valores.length}`
-            const res = await pool.query(sql,valores)
+            const res = await db.query(sql,valores)
+            console.log(res)
             if(res.rowCount >0){
-                return true
+                const peli = await db.query('select * from movies where id = $1',[id])
+                if(peli.rows[0]!= null){
+                    return peli.rows
+                }
             }
 
             return false

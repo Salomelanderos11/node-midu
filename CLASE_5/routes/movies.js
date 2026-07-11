@@ -1,17 +1,18 @@
 import { Router } from "express";
 import { MovieController } from "../controlador/movies.js";
+import { MovieModel } from "../modelo/postgres/movie.js";
 
+export const createMovieRouter = ({MovieModel}) =>
+{   const Rmovies = Router()
+    const movieController = new MovieController({MovieModel})
+    Rmovies.get('/',movieController.getAll)
 
+    Rmovies.get('/:id',movieController.getid)
 
-export const Rmovies = Router()
+    Rmovies.post('/', movieController.create)
 
-Rmovies.get('/',MovieController.getAll)
+    Rmovies.delete('/:id', movieController.delete)
 
-Rmovies.get('/:id',MovieController.getid)
-
-Rmovies.post('/', MovieController.create)
-
-Rmovies.delete('/:id', MovieController.delete)
-
-Rmovies.patch('/:id', MovieController.update )
-
+    Rmovies.patch('/:id', movieController.update )
+    return Rmovies
+}

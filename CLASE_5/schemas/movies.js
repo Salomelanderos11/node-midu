@@ -42,7 +42,7 @@ export function validar_peli(object){
     const createSchema = movieschema.extend({
         rate: z.number().min(0).max(10).default(0) // 👈 El default solo aplica al crear
     });
-    return createSchema.safeParse(input);
+    return createSchema.safeParse(object);
 }
 
 
