@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo chat con websocket</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        #chat {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #chat form {
+            display: flex;
+            gap: 10px;
+        }
+
+        #chat form input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #chat form button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+    </style>
+    <script type="module">
+        import {io} from 'https://cdn.socket.io/4.7.2/socket.io.esm.min.js';
+        const socket = io();
+    </script>
+</head>
+<body>
+    <section id = "chat">
+        <form id="form">
+            <input type="text" name= "message" id= "imput" placeholder="type a message" autcomplete="off">
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+</body>
+</html>
