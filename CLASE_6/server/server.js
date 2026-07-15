@@ -24,3 +24,5 @@ app.get('/',(req,res)=> {
 server.listen(port,()=>{
     console.log(`server running in por ${port} `)
 })
+
+

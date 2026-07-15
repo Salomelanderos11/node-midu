@@ -39,8 +39,17 @@
 
     </style>
     <script type="module">
-        import {io} from 'https://cdn.socket.io/4.7.2/socket.io.esm.min.js';
+        import {io} from "npm:socket.io-client@4.7.5";
         const socket = io();
+        const form = document.getElementById('form');
+        const input = document.getElementById('input')
+        
+        form.addEventListener('submit', (e) =>{
+            e.preventDefault()
+            if(input.value)
+            socket.emit('chat message', input.value)
+            input.value=''
+        })
     </script>
 </head>
 <body>
